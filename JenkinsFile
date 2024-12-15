@@ -1,5 +1,8 @@
 pipeline {
     agent any
+     //environment {
+       //     KUBECONFIG = credentials('secrets')
+        //}
    
     stages {
         stage('Checkout') {
@@ -10,8 +13,13 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 // Add your deployment steps here
+                withCredentials([
+                            string(credentialsId: 'secrets',)
+                            ])
+            {
                 powershell 'kubectl apply -f deployment.yaml --validate=false'
                 powershell 'kubectl apply -f service.yaml --validate=false'
+            }
             }
         }
         stage('Test') {
