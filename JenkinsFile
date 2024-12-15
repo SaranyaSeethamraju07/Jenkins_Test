@@ -17,6 +17,7 @@ pipeline {
                             string(credentialsId: 'secrets')
                             ])
             {
+                powershell 'minikube config set-context minikube'
                 powershell 'kubectl apply -f deployment.yaml --validate=false'
                 powershell 'kubectl apply -f service.yaml --validate=false'
             }
