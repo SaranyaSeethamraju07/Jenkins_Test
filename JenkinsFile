@@ -1,13 +1,11 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/SaranyaSeethamraju07/Jenkins_Test.git'
+                git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git'
             }
         }
-
         stage('Deploy to Kubernetes') {
             steps {
                 // Add your deployment steps here
@@ -15,7 +13,6 @@ pipeline {
                 sh 'kubectl apply -f service.yaml'
             }
         }
-
         stage('Test') {
             steps {
                 // Add your testing steps here
