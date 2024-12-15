@@ -1,8 +1,9 @@
 pipeline {
     agent any
-     //environment {
-       //     KUBECONFIG = credentials('secrets')
-        //}
+     environment {
+           //KUBECONFIG = credentials('secrets')
+            KUBECONFIG = "C:\Users\saranya_seethamraju\.minikube\profiles\minikube\config.json"
+        }
    
     stages {
         stage('Checkout') {
@@ -13,14 +14,14 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 // Add your deployment steps here
-                withCredentials([
-                            string(credentialsId: 'secrets')
-                            ])
-            {
+                //withCredentials([
+                            //string(credentialsId: 'secrets')
+                           // ])
+          //  {
                 powershell 'minikube config set-context minikube'
                 powershell 'kubectl apply -f deployment.yaml --validate=false'
                 powershell 'kubectl apply -f service.yaml --validate=false'
-            }
+           // }
             }
         }
         stage('Test') {
