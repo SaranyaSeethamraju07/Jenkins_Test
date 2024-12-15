@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git',
+                git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git'
             }
         }
         stage('Deploy to Kubernetes') {
