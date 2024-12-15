@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git',
-                credentialsId: 'SaranyaSeethamraju07'
+                credentialsId: '6d88753c-4273-499b-8ef7-12f60c97a860'
             }
         }
         stage('Deploy to Kubernetes') {
