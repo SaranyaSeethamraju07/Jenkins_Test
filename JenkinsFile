@@ -3,22 +3,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git',
-                credentialsId: '0eecb35d-9e59-472c-9685-c0eb51b2168f'
+                git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git', credentialsId: '0eecb35d-9e59-472c-9685-c0eb51b2168f'
             }
         }
         stage('Deploy to Kubernetes') {
             steps {
                 // Add your deployment steps here
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
+                powershell 'kubectl apply -f deployment.yaml'
+                powershell 'kubectl apply -f service.yaml'
             }
         }
         stage('Test') {
             steps {
                 // Add your testing steps here
-                sh 'kubectl get pods'
-                sh 'curl http://$(minikube service hello-app-service --url)'
+                powershell 'kubectl get pods'
+                powershell 'curl http://$(minikube service hello-app-service --url)'
             }
         }
     }
