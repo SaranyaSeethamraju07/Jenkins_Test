@@ -2,7 +2,7 @@ pipeline {
     agent any
      environment {
            //KUBECONFIG = credentials('secrets')
-            KUBECONFIG = "C:\Users\saranya_seethamraju\.minikube\profiles\minikube\config.json"
+            KUBECONFIG = r"C:\Users\saranya_seethamraju\.minikube\profiles\minikube\config.json"
         }
    
     stages {
