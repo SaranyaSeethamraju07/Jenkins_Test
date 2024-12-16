@@ -30,7 +30,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'secrets', variable: 'SECRET_VALUE')]) {
                         bat '''
                             powershell "kubectl get pods"
-                            powershell "curl http://$(minikube service hello-app-service --url)"
+                            powershell "curl http://127.0.0.1:51078"
                         '''
                     }
                 }
