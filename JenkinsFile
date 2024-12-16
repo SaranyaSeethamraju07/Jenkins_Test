@@ -1,31 +1,16 @@
 pipeline {
     agent any
-   
+
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'git@github.com:SaranyaSeethamraju07/Jenkins_Test.git', credentialsId: 'da823037-54ec-4764-b67c-bb9b1e1cb881'
             }
         }
-        //stage('Deploy to Kubernetes') {
-            //steps {
-                // Add your deployment steps here
-                //withCredentials([
-                     //       string(credentialsId: 'secrets')
-                    //       ])
-         // {
-          //      powershell 'minikube config set-context minikube'
-          //      powershell 'kubectl apply -f deployment.yaml --validate=false'
-           //     powershell 'kubectl apply -f service.yaml --validate=false'
-          // }
-           // }
-       // }
+
         stage('Deploy to Kubernetes') {
             steps {
-                // Add your deployment steps here
-                withCredentials([
-                    string(credentialsId: 'secrets')
-                ]) {
+                withCredentials([string(credentialsId: 'secrets', variable: 'SECRET_VALUE')]) {
                     script {
                         bat """
                             cd C:\\Users\\saranya_seethamraju
@@ -37,9 +22,9 @@ pipeline {
                 }
             }
         }
+
         stage('Test') {
             steps {
-                // Add your testing steps here
                 powershell 'kubectl get pods'
                 powershell 'curl http://$(minikube service hello-app-service --url)'
             }
