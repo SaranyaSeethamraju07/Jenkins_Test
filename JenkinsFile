@@ -8,11 +8,11 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+       stage('Deploy to Kubernetes') {
             steps {
-                env.KUBECONFIG = "C:\\Windows\\System32\\config\\systemprofile\\.minikube\\config"
-                withCredentials([string(credentialsId: 'secrets', variable: 'SECRET_VALUE')]) {
-                    script {
+                script {
+                    env.KUBECONFIG = "C:\Windows\System32\config\systemprofile\.minikube\config"
+                    withCredentials([string(credentialsId: 'secrets', variable: 'SECRET_VALUE')]) {
                         bat """
                             cd C:\\Users\\saranya_seethamraju
                             powershell.exe minikube config set-context minikube
