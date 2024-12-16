@@ -28,10 +28,10 @@ pipeline {
                 script {
                     env.KUBECONFIG = "C:\\Users\\saranya_seethamraju\\.kube\\config"
                     withCredentials([string(credentialsId: 'secrets', variable: 'SECRET_VALUE')]) {
-                        bat """
+                        bat '''
                             powershell "kubectl get pods"
                             powershell "curl http://$(minikube service hello-app-service --url)"
-                        """
+                        '''
                     }
                 }
             }
