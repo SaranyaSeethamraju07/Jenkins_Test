@@ -8,4 +8,4 @@ spec:
     app: hello-app
   ports:
    - port: 85
-     targetPort: 8080
+     targetPort: 8081
